@@ -9,12 +9,24 @@
 	<h2>HangmanOOP</h2>
 
 <?php
-
+	//----------------------------------
 	$word = new WordGenerator;//this will give us one word
+	var_dump($word->startWordGenerator());//this will echo the word
+	$_SESSION['word'] = $word;
+
+
+
+
+
+	//----------------------------------
+
+	
 	$object = new GuessHandler;
 	$letter = $object->userGuessSimulation();//this will give us one random letter, which is simulating the user guess
-	echo $letter;
+	echo '<br>' . $letter . '<br>';
 	$object->findLetterInWord($word, $letter);//this is deciding if the guess was correct or not, also creates an array of letters for the correct guesses and for the wrong guesses
+
+	$end = new EndOfGame;//this will empty all the arrays...
 ?>
 
 
