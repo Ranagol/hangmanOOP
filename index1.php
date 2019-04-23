@@ -6,7 +6,7 @@ function __autoload($className) {
 	require("classes/$className.php");
 }
 
-$wordpicker = new Wordpicker();
+
 
 require 'index.view.php';
 

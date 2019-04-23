@@ -8,7 +8,14 @@
 <body>
 	<h2>HangmanOOP</h2>
 
+<?php
 
+	$word = new WordGenerator;//this will give us one word
+	$object = new GuessHandler;
+	$letter = $object->userGuessSimulation();//this will give us one random letter, which is simulating the user guess
+	echo $letter;
+	$object->findLetterInWord($word, $letter);//this is deciding if the guess was correct or not, also creates an array of letters for the correct guesses and for the wrong guesses
+?>
 
 
 </body>

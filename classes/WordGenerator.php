@@ -2,7 +2,7 @@
 
 class WordGenerator{//this class will open a txt file, create an array from words, and choose randomly one word
 
-	public $txtFilePath = 'words2.txt';
+	public $txtFilePath = 'classes/words2.txt';
 	
 	public function readFile(){
 		$fileOpened =fopen( $this->txtFilePath, 'r');
@@ -29,12 +29,11 @@ class WordGenerator{//this class will open a txt file, create an array from word
 		return $c;//this is an array!!
 	}
 
-	
+
 }
 
 $object = new WordGenerator;
-
-var_dump($object->startWordGenerator());
+var_dump($object->startWordGenerator());//this will give us an array, containing all the letters of a random word
 
 
 
