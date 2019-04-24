@@ -15,15 +15,14 @@
 
 
 
-<div class="container card">
+<div class="container card mt-5 p-4">
 
 	<h2>HangmanOOP</h2>
 
-	<?php
-		require 'bootstrap.php';	
-	?>
+	
 	<div>
-		Mistery word hidden: <?php ?>
+		Mistery word: <strong><?php displayMisteryWord($letters) ?></strong>
+		
 	</div>
 
 	<div>
@@ -31,7 +30,7 @@
 	</div>
 
 	<div>
-		Correct letters: <?php showLettersFromArray($_SESSION['correctGuess']); ?>
+		Correct letters (testing purposes): <?php showLettersFromArray($_SESSION['correctGuess']); ?>
 	</div>
 
 	<div>
@@ -39,7 +38,7 @@
 	</div>
 
 	<div>
-		Feedback for the last guess:<?php echo $feedback; ?>
+		Your last guess was letter "<?php echo $letterGuess; ?>" and that is <?php echo $feedback; ?>
 	</div>
 
 	<form method="POST">

@@ -13,4 +13,12 @@ function showLettersFromArray($someArray){
 }
 
 
+function displayMisteryWord($letters){
+	foreach ($letters as $key => $value) {
+		$key = '  *  ';
+		echo $key;
+	}
+}
+
+
 ?>
