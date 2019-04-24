@@ -6,7 +6,12 @@ function __autoload($className) {
 	require("classes/$className.php");
 }
 
+require 'functions.php';
 
+if (isset($_POST)) {
+	$letterGuess = $_POST['letterGuess'];//this is the users current guess
+	echo $letterGuess . '<br>';
+}
 
 
 $wordgenerator = new WordGenerator;
@@ -15,9 +20,18 @@ $_SESSION['words'][] = $word;//which will be stored in session as the value of t
 $staticWord = $_SESSION['words'][0];//...now we just save this to a variable... and we finally have a fix word!
 echo $staticWord;//...which is echoed here
 
-$a = new DisplayWord($staticWord);
-var_dump($a);
+$letters = arrayCreator($staticWord);//we splitted the fix word to an array of letters
+var_dump($letters);
 
+$searching = array_keys($letters,$letterGuess, 'strict');
+
+if (isset($searching[0])) {
+	echo "Correct";
+} else {
+	echo "Not correct";
+}
+
+var_dump($searching);
 
 
 

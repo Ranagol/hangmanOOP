@@ -23,16 +23,19 @@
 		require 'bootstrap.php';	
 	?>
 
-		<form method="POST">
-			<input type="text" name="cycle" value="<?php echo $word; ?>">
-			<button name="submit" value="Guess">Guess</button>
-		</form>
+		
 
 
 		<form method="POST">
 			<div class="row">
-				<button disabled="" name="usersLetter" value="a">a</button>
-				<button>b</button>
+				<button name="letterGuess" value="t">t</button>
+				<button name="letterGuess" value="a">a</button>
+				<button name="letterGuess" value="b">b</button>
+				<button name="letterGuess" value="l">l</button>
+				<button name="letterGuess" value="e">e</button>
+				<button name="letterGuess" value="x">x</button>
+				
+				
 			</div>
 		</form>
 </div>
