@@ -15,10 +15,13 @@ class GuessHandler{
 				echo "Your guess is correct.";
 				$_SESSION['allCorrectGuesses'][] = $letter;
 				var_dump($_SESSION['allCorrectGuesses']);
+				var_dump($_SESSION['allWrongtGuesses']);
 			} else {
 				echo "Your guess is wrong";
-				$_SESSION['allCorrectGuesses'][] = $letter;
+				$_SESSION['allWrongGuesses'][] = $letter;
 				var_dump($_SESSION['allCorrectGuesses']);
+				var_dump($_SESSION['allWrongtGuesses']);
+				
 			}
 		}
 	}

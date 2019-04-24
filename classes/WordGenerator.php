@@ -2,20 +2,7 @@
 
 class WordGenerator{//this class will open a txt file, create an array from words, and choose randomly one word
 
-	public $txtFilePath = 'words2.txt';
-
-	public $noWordYet = false;
-
-
-
-	//--------------------------------------------
-	public function thisWasAlreadyDone(){
-		$this->noWordYet = true;
-	}
-
-
-	//-------------------------------------
-
+	public $txtFilePath = 'classes/words2.txt';
 
 	public function readFile(){
 		$fileOpened =fopen( $this->txtFilePath, 'r');
@@ -30,26 +17,14 @@ class WordGenerator{//this class will open a txt file, create an array from word
 		return $oneWordOnly;
 	}
 
-	public function lettersFromWord($oneWordOnly){
-		$wordLetters = str_split($oneWordOnly);
-		return $wordLetters;
-	}
-
 	public function startWordGenerator(){
-		$this->thisWasAlreadyDone();
 		$a = $this->readFile();
 		$b = $this->selectWord($a);
-		$c = $this->lettersFromWord($b);
-		return $c;//this is an array!!
+		return $b;//this is an array, with all the letters of a word!!
 		
 	}
 
 }
 
-$word = new WordGenerator;//this will give us one word
-var_dump($word->startWordGenerator());//this will echo the word
-
 
 ?>
-
-
