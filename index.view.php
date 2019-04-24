@@ -39,16 +39,7 @@
 	</div>
 
 	<div>
-		Feedback for the last guess: 
-		<?php
-			if (isset($checkingTheGuess[0])) {//if there is a key found...
-				echo "Correct";
-				$_SESSION['correctGuess'][] = $letterGuess;
-			} else {
-				echo "Not correct";
-				$_SESSION['wrongGuess'][] = $letterGuess;
-			}
-		?>
+		Feedback for the last guess:<?php echo $feedback; ?>
 	</div>
 
 	<form method="POST">
