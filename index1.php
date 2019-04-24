@@ -23,17 +23,12 @@ echo $staticWord;//...which is echoed here
 $letters = arrayCreator($staticWord);//we splitted the fix word to an array of letters
 var_dump($letters);
 
-$searching = array_keys($letters,$letterGuess, 'strict');
-
-if (isset($searching[0])) {
-	echo "Correct";
-} else {
-	echo "Not correct";
-}
-
-var_dump($searching);
+$checkingTheGuess = array_keys($letters,$letterGuess, 'strict');//this returns the values key, if it found the values
 
 
+
+
+//new EndOfGame;
 
 require 'index.view.php';
 

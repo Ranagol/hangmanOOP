@@ -15,29 +15,46 @@
 
 
 
-<div class="container">
+<div class="container card">
 
 	<h2>HangmanOOP</h2>
 
 	<?php
 		require 'bootstrap.php';	
 	?>
+	<div>
+		Mistery word hidden: <?php ?>
+	</div>
 
-		
+	<div>
+		Mistery word solved (testing purposes): <?php echo $staticWord; ?>
+	</div>
 
+	<div>
+		Correct letters: <?php showLettersFromArray($_SESSION['correctGuess']); ?>
+	</div>
 
-		<form method="POST">
-			<div class="row">
-				<button name="letterGuess" value="t">t</button>
-				<button name="letterGuess" value="a">a</button>
-				<button name="letterGuess" value="b">b</button>
-				<button name="letterGuess" value="l">l</button>
-				<button name="letterGuess" value="e">e</button>
-				<button name="letterGuess" value="x">x</button>
-				
-				
-			</div>
-		</form>
+	<div>
+		Wrong letters: <?php showLettersFromArray($_SESSION['wrongGuess']); ?>
+	</div>
+
+	<div>
+		Feedback for the last guess: 
+		<?php
+			if (isset($checkingTheGuess[0])) {//if there is a key found...
+				echo "Correct";
+				$_SESSION['correctGuess'][] = $letterGuess;
+			} else {
+				echo "Not correct";
+				$_SESSION['wrongGuess'][] = $letterGuess;
+			}
+		?>
+	</div>
+
+	<form method="POST">
+		<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
+		<input type="submit" name="submit">
+	</form>
 </div>
 
 

@@ -5,21 +5,24 @@ function arrayCreator($variable){
 	return $letters;
 }
 
-//ez nem jo mert mindegyik beture cselekszik, nem csak a keresett beture
-function findLetterInWord($staticWord, $letterGuess){
-	foreach ($staticWord as $key => $value) {
-		if ($value == $letterGuess) {
-			echo "Your guess is correct.";
-			$_SESSION['allCorrectGuesses'][] = $letterGuess;
-		} else {
-			echo "Your guess is wrong";
-			$_SESSION['allWrongGuesses'][] = $letterGuess;
-		}
+function disableButton($letterGuess){
+	switch ($letterGuess) {
+		case 'value':
+			# code...
+			break;
+		
+		default:
+			# code...
+			break;
 	}
-	var_dump($_SESSION);
-
+	echo "disable";
 }
 
+function showLettersFromArray($someArray){
+	foreach ($someArray as $key => $value) {
+		echo ' ' . $value . ',';
+	}
+}
 
 
 ?>
