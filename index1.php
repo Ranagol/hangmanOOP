@@ -38,17 +38,26 @@ if (isset($checkingTheGuess[0])) {//if there is a key found...
 	$_SESSION['wrongGuess'][] = $letterGuess;//add this letter to this array
 }
 
-
 /*
 echo "<br>Below is the array of correctGuess <br>";
 var_dump($_SESSION['correctGuess']);
-
 echo "<br>Below is the array of wrongGuess <br>";
 var_dump($_SESSION['wrongGuess']);
 */
 
+$session = $_SESSION['correctGuess'];
+foreach ($letters as $keyLetters => $valueLetters) {
+	foreach ($session as $keySession => $valueSession) {
+		if ($valueLetters == $valueSession) {
+			echo $valueLetters;
+		} else {
+			$keyLetters = ' * ';
+			echo $keyLetters;
+		}
+	}
+	
 
-
+}
 
 
 

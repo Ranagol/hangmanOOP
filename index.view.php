@@ -21,7 +21,7 @@
 
 	
 	<div>
-		Mistery word: <strong><?php displayMisteryWord($letters) ?></strong>
+		Mistery word: <strong><?php //displayMisteryWord($letters) ?></strong>
 		
 	</div>
 
