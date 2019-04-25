@@ -38,6 +38,35 @@ if (isset($checkingTheGuess[0])) {//if there is a key found...
 	$_SESSION['wrongGuess'][] = $letterGuess;//add this letter to this array
 }
 
+if (isset($_SESSION['correctGuess'])) {
+	$noDuplicates = array_unique($_SESSION['correctGuess']);//taking out all the possible duplicate values that could have been created by mistake or during refresh
+
+	$displayThis=[];
+	$string = 0;
+	foreach ($letters as $keyLetters => $valueLetters) {
+		foreach ($noDuplicates as $keySession => $valueSession) {
+			if ($valueLetters == $valueSession) {
+				//echo $valueLetters;
+				$displayThis[]= $valueLetters;
+				$string .= $valueLetters;
+			} else {
+				//$keyLetters = ' * ';
+				//echo $keyLetters;
+				$displayThis[]= $keyLetters;
+				$string .= $keyLetters;
+			}	
+		}
+	}
+	echo '<br> This is it ' . $string;
+	$displayNoDuplicate = array_unique($displayThis);
+
+
+}
+
+
+
+//var_dump($noDuplicates);
+
 /*
 echo "<br>Below is the array of correctGuess <br>";
 var_dump($_SESSION['correctGuess']);
@@ -45,20 +74,14 @@ echo "<br>Below is the array of wrongGuess <br>";
 var_dump($_SESSION['wrongGuess']);
 */
 
-$session = $_SESSION['correctGuess'];
-foreach ($letters as $keyLetters => $valueLetters) {
-	foreach ($session as $keySession => $valueSession) {
-		if ($valueLetters == $valueSession) {
-			echo $valueLetters;
-		} else {
-			$keyLetters = ' * ';
-			echo $keyLetters;
-		}
-	}
-	
 
-}
 
+//
+
+//var_dump($displayThis);
+
+
+//var_dump($displayNoDuplicate);
 
 
 

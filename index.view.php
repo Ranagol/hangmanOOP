@@ -30,11 +30,21 @@
 	</div>
 
 	<div>
-		Correct letters (testing purposes): <?php showLettersFromArray($_SESSION['correctGuess']); ?>
+		Correct letters (testing purposes): 
+		<?php
+			if (isset($_SESSION['correctGuess'])) {
+				showLettersFromArray($_SESSION['correctGuess']);
+			}
+		?>
 	</div>
 
 	<div>
-		Wrong letters: <?php showLettersFromArray($_SESSION['wrongGuess']); ?>
+		Wrong letters: 
+		<?php
+			if (isset($_SESSION['wrongGuess'])) {
+				showLettersFromArray($_SESSION['wrongGuess']);
+			} 
+		?>
 	</div>
 
 	<div>
