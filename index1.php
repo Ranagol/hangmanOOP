@@ -9,15 +9,12 @@ function __autoload($className) {
 require 'functions.php';
 
 
-
+//USERS GUESS
 if (isset($_POST['letterGuess'])) {
 	$letterGuess = $_POST['letterGuess'];//this is the users current guess
-	//var_dump($_POST);
-	//echo $letterGuess . '<br>';
-} else {
-	$letterGuess = '';
 }
 
+//RESET BUTTON
 if (isset($_POST['Reset'])) {
 	$reset = $_POST['Reset'];
 	echo "Reset started";
@@ -27,35 +24,49 @@ if (isset($_POST['Reset'])) {
 	echo "No reset process, continue with the game";
 }
 
-
+echo "<br>Below is the POST vardump<br>";
 var_dump($_POST);
 
-$wordgenerator = new WordGenerator;
-$word = $wordgenerator->startWordGenerator();//this will give us one random word
-$_SESSION['words'][] = $word;//which will be stored in session as the value of the first key
-$staticWord = $_SESSION['words'][0];//...now we just save this to a variable... and we finally have a fix word!
-//echo $staticWord;//...which is echoed here
+//RANDOM WORD
+if (isset($_SESSION['words'])) {
+	echo "WORD is set" . "<br>";
+	$word = $_SESSION['words'][0];
+} else {
+	echo "WORD IS NOT SET YET" . "<br>";
+	$wordgenerator = new WordGenerator;
+	$staticWord = $wordgenerator->startWordGenerator();//somehow this is a string now. This is our random word.
+	$_SESSION['words'][] = $staticWord;//which will be stored in session as the value of the first key
+	unset($wordgenerator);
+}
+echo "THIS IS THE WORD: " . $staticWord  . "<br>";
+echo "<br>Below is the result of the SESSIOwords <br>";
+var_dump($_SESSION['words']);
 
+//CREATING ARRAY FROM WORD
 $letters = arrayCreator($staticWord);//we splitted the fix word to an array of letters below
-//echo "<br>Below is the array of letters <br>";
-//var_dump($letters);
 
-$checkingTheGuess = array_keys($letters,$letterGuess, 'strict');//this returns the values key, if it found the values
-//echo "<br>Below is the result of the checkingTheGuess <br>";
-//var_dump($checkingTheGuess);
+//CHECKING IF THE WORD CONTAINS THE GUESS
+if (isset($_POST['letterGuess'])) {
+	$checkingTheGuess = array_keys($letters,$letterGuess, 'strict');//this returns the values key, if it found the values
+	echo "<br>Below is the result of the checkingTheGuess <br>";
+	var_dump($checkingTheGuess);
+}
+
 
 $showMisteryWord = 0;
 
-
-
-if (isset($checkingTheGuess[0])) {//if there is a key found...
+//IS THERE A MATCH?
+if (!empty($checkingTheGuess)) {//if there is a key found...
 	$feedback = " correct!";
-	$_SESSION['correctGuess'][] = $letterGuess;//add this letter to this array
+	$_SESSION['correctGuess'][] = $letterGuess;//add this letter to the correct array
+	echo "<br>Below is the result of the vardump correctGuess <br>";
+	var_dump($_SESSION['correctGuess']);
 	$length = strlen($staticWord);
-	echo $length  . '<br>';
+	//echo "<br>Below is the " . $_SESSION['mask'] . "<br>";
 	
-
-	if (array_search('firstMaskCreated', $_SESSION['mask']) !==0) {// if this is the first cycle, and no mask was created
+	//MASK CREATING
+	// if this is the first cycle, and no mask was created
+	if (array_search('firstMaskCreated', $_SESSION['mask']) !==0) {
 		echo "firstMaskCreated noooooooooooot FOUND"  . '<br>';
 		$mask = str_pad('', $length, '*');//this will create the FIRST mask ***********
 		echo $mask . '<br>';
@@ -75,11 +86,21 @@ if (isset($checkingTheGuess[0])) {//if there is a key found...
 		$showMisteryWord = 2;
 	}	
 
-} else {
+} else {//when wrong letter was submitted, then...
 	$feedback = " not correct!";
-	$_SESSION['wrongGuess'][] = $letterGuess;//add this letter to this array
+	if (isset($_POST['letterGuess'])) {
+		$_SESSION['wrongGuess'][] = $letterGuess;//add this letter to this array
+	}
 }
+echo "<br>Below is the result of the vardump SESSIONcorrectGuess<br>";
+var_dump($_SESSION['correctGuess']);
 
+echo "<br>Below is the result of the vardump SESSIONwrongGuess<br>";
+var_dump($_SESSION['wrongGuess']);
+
+
+echo "<br>Below is the result of the vardump SESSION['mask']<br>";
+var_dump($_SESSION['mask']);
 require 'index.view.php';
 
 ?>
