@@ -21,8 +21,16 @@
 
 	
 	<div>
-		Mistery word: <strong><?php ?></strong>
-		
+		Mistery word: 
+		<strong>
+			<?php
+				if ($showMisteryWord <= 1) {// if this is the first cycle, and no mask was created
+					echo str_pad('', strlen($staticWord), '*');
+				} else {//if this is NOT the first cycle, and there is a mask created
+					echo end($_SESSION['mask']); 
+				}
+			?>		
+		</strong>
 	</div>
 
 	<div>
@@ -51,10 +59,20 @@
 		Your last guess was letter "<?php echo $letterGuess; ?>" and that is <?php echo $feedback; ?>
 	</div>
 
-	<form method="POST">
-		<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
-		<input type="submit" name="submit">
-	</form>
+	<div class="row">
+		<div class="ml-2">
+			<form method="POST">
+				<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
+				<input type="submit" name="submit">
+			</form>
+		</div>
+
+		<div class="ml-2">
+			<form method="POST">	
+				<input type="submit" name="Reset" value="reset">
+			</form>
+		</div>
+	</div>
 </div>
 
 

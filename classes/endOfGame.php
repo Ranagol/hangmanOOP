@@ -6,6 +6,10 @@ class EndOfGame{
 		$this->emptySession();
 	}
 
+	public function __destruct(){
+		echo "The EndOfGame has been destructed.";
+	}
+
 	public function emptySession(){
 		session_unset();// remove all session variables
 		session_destroy();// destroy the session
