@@ -33,55 +33,28 @@ $checkingTheGuess = array_keys($letters,$letterGuess, 'strict');//this returns t
 if (isset($checkingTheGuess[0])) {//if there is a key found...
 	$feedback = " correct!";
 	$_SESSION['correctGuess'][] = $letterGuess;//add this letter to this array
+	$length = strlen($staticWord);
+	echo $length  . '<br>';
+	$mask = str_pad('', $length, '*');
+	echo $mask . '<br>';//***********
+	for($i = 0; $i < $length; $i++) {
+	    if($staticWord[$i] === $letterGuess) {
+	        $mask[$i] = $letterGuess;
+	    }
+	}
+	echo $mask . '<br>'; // **ll
+
 } else {
 	$feedback = " not correct!";
 	$_SESSION['wrongGuess'][] = $letterGuess;//add this letter to this array
 }
 
-if (isset($_SESSION['correctGuess'])) {
-	$noDuplicates = array_unique($_SESSION['correctGuess']);//taking out all the possible duplicate values that could have been created by mistake or during refresh
-
-	$displayThis=[];
-	$string = 0;
-	foreach ($letters as $keyLetters => $valueLetters) {
-		foreach ($noDuplicates as $keySession => $valueSession) {
-			if ($valueLetters == $valueSession) {
-				//echo $valueLetters;
-				$displayThis[]= $valueLetters;
-				$string .= $valueLetters;
-			} else {
-				//$keyLetters = ' * ';
-				//echo $keyLetters;
-				$displayThis[]= $keyLetters;
-				$string .= $keyLetters;
-			}	
-		}
-	}
-	echo '<br> This is it ' . $string;
-	$displayNoDuplicate = array_unique($displayThis);
-
-
-}
 
 
 
-//var_dump($noDuplicates);
-
-/*
-echo "<br>Below is the array of correctGuess <br>";
-var_dump($_SESSION['correctGuess']);
-echo "<br>Below is the array of wrongGuess <br>";
-var_dump($_SESSION['wrongGuess']);
-*/
 
 
 
-//
-
-//var_dump($displayThis);
-
-
-//var_dump($displayNoDuplicate);
 
 
 
@@ -90,4 +63,40 @@ var_dump($_SESSION['wrongGuess']);
 require 'index.view.php';
 
 
+
+
+
+/* THE OLD WAY
+if (isset($_SESSION['correctGuess'])) {//if this array exists, then continue with the work
+	$noDuplicates = array_unique($_SESSION['correctGuess']);//taking out all the possible duplicate values that could have been created by mistake or during refresh
+
+	//display all guessed letters, * for all not guessed letters
+	$displayThis=[];
+	$string = 0;//this will be the final display hopefully
+	foreach ($letters as $keyLetters => $valueLetters) {//all letters of the WORD
+		foreach ($noDuplicates as $keySession => $valueSession) {//correct guess LETTER
+			if ($valueLetters == $valueSession) {//in case of match...
+				//echo $valueLetters;
+				if (!strpos($string, $valueLetters)) {//if the letter is not already in the string, then add to the string
+					$string .= $valueLetters;
+					$displayThis[]= $valueLetters;
+					echo '<br>' . $string . '<br>';
+				}
+				
+			} else {//if there is no match
+				//$keyLetters = ' * ';
+				//echo $keyLetters;
+				$displayThis[]= $keyLetters;
+				$string .= $keyLetters;
+			}
+			
+		}
+	}
+	
+	
+	echo '<br> This is it ' . $string;
+	
+
+}
+*/
 ?>

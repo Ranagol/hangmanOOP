@@ -21,7 +21,7 @@
 
 	
 	<div>
-		Mistery word: <strong><?php //displayMisteryWord($letters) ?></strong>
+		Mistery word: <strong><?php ?></strong>
 		
 	</div>
 
@@ -30,7 +30,7 @@
 	</div>
 
 	<div>
-		Correct letters (testing purposes): 
+		Correct letters ($_SESSION['correctGuess']): 
 		<?php
 			if (isset($_SESSION['correctGuess'])) {
 				showLettersFromArray($_SESSION['correctGuess']);
