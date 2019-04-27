@@ -24,9 +24,7 @@
 		Mistery word: 
 		<strong>
 			<?php
-				if ($showMisteryWord <= 1) {// if this is the first cycle, and no mask was created
-					echo str_pad('', strlen($staticWord), '*');
-				} else {//if this is NOT the first cycle, and there is a mask created
+				if ($showMisteryWord <= 2) {
 					echo end($_SESSION['mask']); 
 				}
 			?>		
