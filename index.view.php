@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col">
+		<div class="col mt-4 ml-5">
 			<div>
 				Mistery word: 
 				<strong>
@@ -36,7 +36,7 @@
 			</div>
 
 			<div>
-				Mistery word solved (testing purposes): <?php echo $staticWord; ?>
+				Mistery word solved (left for testing purposes): <?php echo $staticWord; ?>
 			</div>
 
 	
@@ -74,7 +74,7 @@
 			</div>
 		</div>
 
-		<div class="col">
+		<div class="col ml-5 pl-3">
 			<img src="<?php echo $imageDisplay; ?>">
 		</div>
 	</div>	
