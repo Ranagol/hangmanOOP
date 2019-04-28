@@ -34,11 +34,8 @@ $length = strlen($staticWord);//this is the length of the word
 
 //CREATING INITIAL MASK (***********) - if this is the first cycle, and no mask was created
 if (array_search('firstMaskCreated', $_SESSION['mask']) !==0) {
-	//echo "firstMaskCreated noooooooooooot FOUND"  . '<br>';
-	$mask = str_pad('', $length, '*');//this will create the FIRST mask ***********
-	//echo $mask . '<br>';
-	$_SESSION['mask'][] = 'firstMaskCreated';//this is how we 'memorize' the sign that the first mask was created
-	$_SESSION['mask'][] = $mask;//this is how we 'memorize' the actual first mask, which is full of ******** and nothing else. We need the first letter here.
+	$mask = new InitialMask;
+	$mask->initialMaskCreate($length);
 }
 
 //CREATING ARRAY FROM WORD
@@ -58,20 +55,14 @@ if (!empty($checkingTheGuess)) {//if there is a key found...
 	//ADD LETTER TO THE LAST VERSION OF THE MASK
 	if (array_search('firstMaskCreated', $_SESSION['mask']) !==false) {
 		//echo "firstMaskCreated FOUND"  . '<br>';
-		$mask = end($_SESSION['mask']);//we 'remember' the last mask
-		//echo "Adding letter to the initial mask"  . '<br>';
-		for($i = 0; $i < $length; $i++) {
-			if($staticWord[$i] === $letterGuess) {
-				$mask[$i] = $letterGuess;//we add the new letter to the last mask
-			}
-		}
-		//echo $mask . '<br>'; // **ll
-		$_SESSION['mask'][] = $mask;//we 'memorize' this last mask, so it can be used the next time to add more letters
+		$addLetter = new AddLetterToMask;
+		$addLetter->createNewMask($length, $staticWord, $letterGuess);
+
 		$showMisteryWord = 1;
 	}
 } else {//IF THERE IS NO MATCH, THEN DO THIS
 	if (isset($_POST['letterGuess'])) {
-		$_SESSION['wrongGuess'][] = $letterGuess;//add this letter to this array
+		$_SESSION['wrongGuess'][] = $letterGuess;//add this wrong letter to the wrongGuess array
 	}
 }
 
