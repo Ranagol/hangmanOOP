@@ -9,7 +9,7 @@ function __autoload($className) {
 require 'functions.php';
 
 //RESET BUTTON
-if (isset($_POST['Reset'])) {
+if (isset($_POST['Reset'])) {//if the reset button is clicked, then...
 	$reset = $_POST['Reset'];
 	//echo "Reset started";
 	$end = new EndOfGame;
@@ -32,8 +32,7 @@ if (!isset($_SESSION['words'])) {
 
 $length = strlen($staticWord);//this is the length of the word
 
-//CREATING INITIAL MASK (***********)
-// if this is the first cycle, and no mask was created
+//CREATING INITIAL MASK (***********) - if this is the first cycle, and no mask was created
 if (array_search('firstMaskCreated', $_SESSION['mask']) !==0) {
 	//echo "firstMaskCreated noooooooooooot FOUND"  . '<br>';
 	$mask = str_pad('', $length, '*');//this will create the FIRST mask ***********
@@ -55,9 +54,7 @@ $showMisteryWord = 0;
 
 //IF THERE IS A MATCH, THEN DO THIS
 if (!empty($checkingTheGuess)) {//if there is a key found...
-	$feedback = " correct!";
 	$_SESSION['correctGuess'][] = $letterGuess;//add this letter to the correct array	
-		
 	//ADD LETTER TO THE LAST VERSION OF THE MASK
 	if (array_search('firstMaskCreated', $_SESSION['mask']) !==false) {
 		//echo "firstMaskCreated FOUND"  . '<br>';
@@ -73,7 +70,6 @@ if (!empty($checkingTheGuess)) {//if there is a key found...
 		$showMisteryWord = 1;
 	}
 } else {//IF THERE IS NO MATCH, THEN DO THIS
-	$feedback = " not correct!";
 	if (isset($_POST['letterGuess'])) {
 		$_SESSION['wrongGuess'][] = $letterGuess;//add this letter to this array
 	}

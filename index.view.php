@@ -15,7 +15,7 @@
 
 
 
-<div class="container card mt-5 p-4">
+<div class="container card border-dark mt-5 p-4">
 
 	<h2>HangmanOOP</h2>
 
@@ -37,7 +37,7 @@
 
 	
 	<div>
-		Correct letters ($_SESSION['correctGuess']): 
+		Correct letters: 
 		<?php
 		
 			if (isset($_SESSION['correctGuess'])) {
@@ -57,20 +57,23 @@
 		?>
 	</div>
 
-	<div class="row">
-		<div class="ml-2">
-			<form method="POST">
-				<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
-				<input type="submit" name="submit">
-			</form>
-		</div>
-
-		<div class="ml-2">
-			<form method="POST">	
-				<input type="submit" name="Reset" value="reset">
-			</form>
-		</div>
+	
+		
+	<div class="ml-0">
+		<form method="POST">
+			<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
+			<input type="submit" name="submit">
+		</form>
 	</div>
+
+	<div class="ml-0 mt-2">
+		<form method="POST">	
+			<input type="submit" name="Reset" value="reset">
+		</form>
+	</div>
+		
+	
+	
 </div>
 
 
