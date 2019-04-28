@@ -6,16 +6,13 @@ class EndOfGame{
 		$this->emptySession();
 	}
 
-	public function __destruct(){
-		echo "The EndOfGame has been destructed.";
-	}
-
 	public function emptySession(){
-		$_POST = [];
-		$_SESSION = [];
 		session_unset();// remove all session variables
-		session_destroy();// destroy the session
-		echo "All session variables are now removed, and the session is destroyed. Now turn off the 'EndOfGame', save and refresh.";
+		//Below: create new word in case of reset
+		$wordgenerator = new WordGenerator;
+		$staticWord = $wordgenerator->startWordGenerator();//$staticWord is a string, don't forget
+		$_SESSION['words'] = $staticWord;
+		//echo "All session variables are now removed, and the session is destroyed.";
 	}
 	
 	

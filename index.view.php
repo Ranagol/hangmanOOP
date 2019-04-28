@@ -35,14 +35,18 @@
 		Mistery word solved (testing purposes): <?php echo $staticWord; ?>
 	</div>
 
+	
 	<div>
 		Correct letters ($_SESSION['correctGuess']): 
 		<?php
+		
 			if (isset($_SESSION['correctGuess'])) {
 				showLettersFromArray($_SESSION['correctGuess']);
 			}
+		
 		?>
 	</div>
+	
 
 	<div>
 		Wrong letters: 
@@ -51,10 +55,6 @@
 				showLettersFromArray($_SESSION['wrongGuess']);
 			} 
 		?>
-	</div>
-
-	<div>
-		Your last guess was letter "<?php echo $letterGuess; ?>" and that is <?php echo $feedback; ?>
 	</div>
 
 	<div class="row">
@@ -88,6 +88,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<?php //require 'appTesting.php'; ?>
 
 
 

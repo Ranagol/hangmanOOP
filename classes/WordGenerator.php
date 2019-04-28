@@ -4,12 +4,11 @@ class WordGenerator{//this class will open a txt file, create an array from word
 
 	public $txtFilePath = 'classes/words2.txt';
 
-	
 	public function readFile(){
 		$fileOpened =fopen( $this->txtFilePath, 'r');
 		$fileWasRead = fread($fileOpened, filesize($this->txtFilePath));//this is a string wit lot of words
-		return $fileWasRead;
 		fclose($fileOpened);
+		return $fileWasRead;
 	}
 
 	public function selectWord($fileWasRead){
@@ -22,9 +21,7 @@ class WordGenerator{//this class will open a txt file, create an array from word
 		$a = $this->readFile();
 		$b = $this->selectWord($a);
 		return $b;//this is an array, with all the letters of a word!!
-		
 	}
-
 }
 
 
