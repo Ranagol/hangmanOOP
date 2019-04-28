@@ -12,11 +12,15 @@ require 'functions.php';
 if (isset($_POST['Reset'])) {//if the reset button is clicked, then...
 	$reset = $_POST['Reset'];
 	//echo "Reset started";
-	$end = new EndOfGame;
+	$end = new Reset;
+	
 	unset($end);
 } else {
 	//echo "No reset process, continue with the game";
 }
+
+$winDisplay = 'hidden';
+$looseDisplay = 'hidden';
 
 //RANDOM WORD 
 if (!isset($_SESSION['words'])) {
@@ -57,7 +61,6 @@ if (!empty($checkingTheGuess)) {//if there is a key found...
 		//echo "firstMaskCreated FOUND"  . '<br>';
 		$addLetter = new AddLetterToMask;
 		$addLetter->createNewMask($length, $staticWord, $letterGuess);
-
 		$showMisteryWord = 1;
 	}
 } else {//IF THERE IS NO MATCH, THEN DO THIS
@@ -65,6 +68,30 @@ if (!empty($checkingTheGuess)) {//if there is a key found...
 		$_SESSION['wrongGuess'][] = $letterGuess;//add this wrong letter to the wrongGuess array
 	}
 }
+
+//YOU WIN
+$lastMask = end($_SESSION['mask']);
+//echo $lastMask;
+$misteryWord = $_SESSION['words'];
+//echo $misteryWord;
+if ($lastMask == $misteryWord) {
+	//echo "Andor is genius";
+	$winDisplay = '';
+}
+
+//YOU LOOSE
+//SESSION-WRONG GUESS = 6
+if (isset($_SESSION['wrongGuess'])) {
+	$wrongGuesses = count($_SESSION['wrongGuess']);
+	echo $wrongGuesses;
+	if ($wrongGuesses == 6) {
+		$looseDisplay = '';
+	}
+}
+
+
+
+
 
 require 'index.view.php';
 

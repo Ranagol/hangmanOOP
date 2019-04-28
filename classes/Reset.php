@@ -1,6 +1,6 @@
 <?php
 
-class EndOfGame{
+class Reset{
 
 	public function __construct(){
 		$this->emptySession();

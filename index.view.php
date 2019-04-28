@@ -47,7 +47,6 @@
 		?>
 	</div>
 	
-
 	<div>
 		Wrong letters: 
 		<?php
@@ -57,8 +56,6 @@
 		?>
 	</div>
 
-	
-		
 	<div class="ml-0">
 		<form method="POST">
 			<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
@@ -71,14 +68,21 @@
 			<input type="submit" name="Reset" value="reset">
 		</form>
 	</div>
-		
-	
-	
 </div>
 
+<!--WINNING-->
+<div class="container card border-dark p-4" <?php echo $winDisplay; ?> >
+	<form method = "POST">
+		<button name="Reset" value="reset"><h2>You won! Play again?</h2></button>
+	</form>
+</div>
 
-
-
+<!--LOOSING-->
+<div class="container card border-dark p-4" <?php echo $looseDisplay; ?> >
+	<form method = "POST">
+		<button name="Reset" value="reset"><h2>You loose! Play again?</h2></button>
+	</form>
+</div>
 
 
 
