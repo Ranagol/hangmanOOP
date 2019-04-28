@@ -83,10 +83,19 @@ if ($lastMask == $misteryWord) {
 //SESSION-WRONG GUESS = 6
 if (isset($_SESSION['wrongGuess'])) {
 	$wrongGuesses = count($_SESSION['wrongGuess']);
-	echo $wrongGuesses;
+	//echo $wrongGuesses;
 	if ($wrongGuesses == 6) {
 		$looseDisplay = '';
 	}
+}
+
+//IMAGE HANDLER
+if (isset($wrongGuesses)) {
+	//echo "variable can be detected";
+	$choosePicture = new ImageSwitch;
+	$imageDisplay = $choosePicture->chooseImage($wrongGuesses);
+} else {
+	$imageDisplay = 'images/Hangman-0.png';
 }
 
 

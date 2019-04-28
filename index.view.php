@@ -17,58 +17,71 @@
 
 <div class="container card border-dark mt-5 p-4">
 
-	<h2>HangmanOOP</h2>
+	
+	<div class="row justify-content-center">
+		<h2>HangmanOOP</h2>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<div>
+				Mistery word: 
+				<strong>
+					<?php
+						if ($showMisteryWord <= 2) {
+							echo end($_SESSION['mask']); 
+						}
+					?>		
+				</strong>
+			</div>
+
+			<div>
+				Mistery word solved (testing purposes): <?php echo $staticWord; ?>
+			</div>
 
 	
-	<div>
-		Mistery word: 
-		<strong>
-			<?php
-				if ($showMisteryWord <= 2) {
-					echo end($_SESSION['mask']); 
-				}
-			?>		
-		</strong>
-	</div>
-
-	<div>
-		Mistery word solved (testing purposes): <?php echo $staticWord; ?>
-	</div>
-
+			<div>
+				Correct letters: 
+				<?php
+				
+					if (isset($_SESSION['correctGuess'])) {
+						showLettersFromArray($_SESSION['correctGuess']);
+					}
+				
+				?>
+			</div>
 	
-	<div>
-		Correct letters: 
-		<?php
-		
-			if (isset($_SESSION['correctGuess'])) {
-				showLettersFromArray($_SESSION['correctGuess']);
-			}
-		
-		?>
-	</div>
-	
-	<div>
-		Wrong letters: 
-		<?php
-			if (isset($_SESSION['wrongGuess'])) {
-				showLettersFromArray($_SESSION['wrongGuess']);
-			} 
-		?>
-	</div>
+			<div>
+				Wrong letters: 
+				<?php
+					if (isset($_SESSION['wrongGuess'])) {
+						showLettersFromArray($_SESSION['wrongGuess']);
+					} 
+				?>
+			</div>
 
-	<div class="ml-0">
-		<form method="POST">
-			<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
-			<input type="submit" name="submit">
-		</form>
-	</div>
+			<div class="ml-0">
+				<form method="POST">
+					<input type="text" name="letterGuess" maxlength="1" placeholder="Your guess.">
+					<input type="submit" name="submit">
+				</form>
+			</div>
 
-	<div class="ml-0 mt-2">
-		<form method="POST">	
-			<input type="submit" name="Reset" value="reset">
-		</form>
-	</div>
+			<div class="ml-0 mt-2">
+				<form method="POST">	
+					<input type="submit" name="Reset" value="reset">
+				</form>
+			</div>
+		</div>
+
+		<div class="col">
+			<img src="<?php echo $imageDisplay; ?>">
+		</div>
+	</div>	
 </div>
+
+	
+	
 
 <!--WINNING-->
 <div class="container card border-dark p-4" <?php echo $winDisplay; ?> >
